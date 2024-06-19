@@ -9,9 +9,16 @@ default = ["std"]
 parking_lot = ["dep:parking_lot", "once_cell/parking_lot"]
 std = ["once_cell/std"]
 
+[[bench]]
+harness = false
+name = "env"
+
 [dependencies]
 once_cell = { version = "1.19.0", default-features = false, features = [
     "alloc",
     "race",
 ] }
 parking_lot = { version = "0.12.3", optional = true }
+
+[dev-dependencies]
+criterion = { version = "0.5.1", features = ["html_reports"] }
