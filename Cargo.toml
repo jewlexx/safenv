@@ -1,6 +1,16 @@
 [package]
+edition = "2021"
 name = "safenv"
 version = "0.1.0"
-edition = "2021"
+
+[features]
+default = ["std"]
+parking_lot = ["dep:parking_lot", "once_cell/parking_lot"]
+std = ["once_cell/std"]
 
 [dependencies]
+once_cell = { version = "1.19.0", default-features = false, features = [
+    "alloc",
+    "race",
+] }
+parking_lot = { version = "0.12.3", optional = true }
