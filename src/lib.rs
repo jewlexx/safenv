@@ -1,14 +1,4 @@
-//! A thread-safe alternative to the `std::env` module
-//!
-//! # Examples
-//! ```
-//! use safenv as env;
-//!
-//! let key = "KEY";
-//! env::set_var(key, "VALUE");
-//! assert_eq!(env::var(key), Ok("VALUE".to_string()));
-//! ```
-
+#![doc = include_str!("../README.md")]
 #![warn(clippy::all, clippy::pedantic, missing_docs)]
 
 use core::ops::DerefMut;
