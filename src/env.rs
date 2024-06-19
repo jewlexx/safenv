@@ -200,7 +200,6 @@ pub fn set_var<K: AsRef<OsStr>, V: AsRef<OsStr>>(key: K, value: V) {
         .insert(key.as_ref().to_owned(), value.as_ref().to_owned());
 }
 
-#[cfg(feature = "std")]
 /// Fills the environment with the contents of the iterator `env`.
 ///
 /// # Panics
@@ -221,7 +220,6 @@ pub fn fill<T: Iterator<Item = (A, B)>, A: AsRef<OsStr>, B: AsRef<OsStr>>(env: T
     }
 }
 
-#[cfg(feature = "std")]
 /// Fills the environment with the contents of the process' environment.
 ///
 /// # Safety

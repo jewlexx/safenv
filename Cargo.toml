@@ -9,20 +9,15 @@ name = "safenv"
 version = "0.1.0"
 
 [features]
-default = ["std"]
 parking_lot = ["dep:parking_lot", "once_cell/parking_lot"]
-std = ["once_cell/std"]
 
 [[bench]]
 harness = false
 name = "env"
 
 [dependencies]
-once_cell = { version = "1.19.0", default-features = false, features = [
-    "alloc",
-    "race",
-] }
-parking_lot = { version = "0.12.3", optional = true }
+once_cell = { version = "1.19" }
+parking_lot = { version = "0.12", optional = true }
 
 [dev-dependencies]
-criterion = { version = "0.5.1", features = ["html_reports"] }
+criterion = { version = "0.5", features = ["html_reports"] }
