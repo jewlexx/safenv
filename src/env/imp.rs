@@ -14,7 +14,7 @@ pub(crate) static ENV_MAP: Mutex<EnvMap> = Mutex::new(BTreeMap::new());
 /// The error type for operations interacting with environment variables.
 /// Possibly returned from [`env::var()`].
 ///
-/// [`env::var()`]: var
+/// [`env::var()`]: super::var
 #[derive(Debug, PartialEq, Eq, Clone)]
 pub enum VarError {
     /// The specified environment variable was not present in the current
