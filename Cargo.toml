@@ -6,6 +6,7 @@ edition = "2021"
 homepage = "https://github.com/winpax/safenv"
 license = "MIT OR Apache-2.0"
 name = "safenv"
+rust-version = "1.66.1"
 version = "0.1.0"
 
 [features]
