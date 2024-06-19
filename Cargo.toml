@@ -1,6 +1,10 @@
 [package]
 authors = ["Juliette Cordor <professional@maybejules.com>"]
+description = "A thread-safe wrapper around the standard library's `env` module"
+documentation = "https://docs.rs/safenv"
 edition = "2021"
+homepage = "https://github.com/winpax/safenv"
+license = "MIT OR Apache-2.0"
 name = "safenv"
 version = "0.1.0"
 
