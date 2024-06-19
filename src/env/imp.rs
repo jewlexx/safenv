@@ -1,5 +1,5 @@
 use core::fmt;
-use std::{collections::BTreeMap, error::Error, ffi::OsString};
+use std::{error::Error, ffi::OsString};
 
 #[cfg(feature = "parking_lot")]
 use parking_lot::Mutex;
@@ -7,9 +7,9 @@ use parking_lot::Mutex;
 #[cfg(not(feature = "parking_lot"))]
 use std::sync::Mutex;
 
-pub(crate) type EnvMap = BTreeMap<OsString, OsString>;
+pub(crate) type EnvMap = std::collections::BTreeMap<OsString, OsString>;
 
-pub(crate) static ENV_MAP: Mutex<EnvMap> = Mutex::new(BTreeMap::new());
+pub(crate) static ENV_MAP: Mutex<EnvMap> = Mutex::new(EnvMap::new());
 
 /// The error type for operations interacting with environment variables.
 /// Possibly returned from [`env::var()`].

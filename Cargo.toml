@@ -9,14 +9,13 @@ name = "safenv"
 version = "0.1.0"
 
 [features]
-parking_lot = ["dep:parking_lot", "once_cell/parking_lot"]
+parking_lot = ["dep:parking_lot"]
 
 [[bench]]
 harness = false
 name = "env"
 
 [dependencies]
-once_cell = { version = "1.19" }
 parking_lot = { version = "0.12", optional = true }
 
 [dev-dependencies]
