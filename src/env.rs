@@ -209,6 +209,7 @@ pub fn set_var<K: AsRef<OsStr>, V: AsRef<OsStr>>(key: K, value: V) {
 /// # Examples
 ///
 /// ```
+/// # use safenv as env;
 /// let env = [("KEY", "VALUE")];
 ///
 /// env::fill(env.into_iter());
@@ -234,14 +235,10 @@ pub fn fill<T: Iterator<Item = (A, B)>, A: AsRef<OsStr>, B: AsRef<OsStr>>(env: T
 /// # Examples
 ///
 /// ```
-/// use std::env;
+/// # use safenv as env;
+/// unsafe { env::inherit() };
 ///
-/// let key = "KEY";
-/// env::set_var(key, "VALUE");
-/// assert_eq!(env::var(key), Ok("VALUE".to_string()));
-///
-/// env::inherit();
-/// assert_eq!(env::var(key), Ok("VALUE".to_string()));
+/// assert_eq!(env::var("CARGO_PKG_AUTHORS"), Ok("Juliette Cordor <professional@maybejules.com>".to_string()));
 /// ```
 ///
 /// [`env::vars_os()`]: std::env::vars_os
