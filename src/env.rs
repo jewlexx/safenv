@@ -200,6 +200,57 @@ pub fn set_var<K: AsRef<OsStr>, V: AsRef<OsStr>>(key: K, value: V) {
         .insert(key.as_ref().to_owned(), value.as_ref().to_owned());
 }
 
+#[cfg(feature = "std")]
+/// Fills the environment with the contents of the iterator `env`.
+///
+/// # Panics
+/// If the environment lock is poisoned, this function will panic.
+///
+/// # Examples
+///
+/// ```
+/// let env = [("KEY", "VALUE")];
+///
+/// env::fill(env.into_iter());
+/// assert_eq!(env::var("KEY"), Ok("VALUE".to_string()));
+/// ```
+pub fn fill<T: Iterator<Item = (A, B)>, A: AsRef<OsStr>, B: AsRef<OsStr>>(env: T) {
+    for (key, value) in env {
+        set_var(key, value);
+    }
+}
+
+#[cfg(feature = "std")]
+/// Fills the environment with the contents of the process' environment.
+///
+/// # Safety
+/// This function relies on a call to [`env::vars_os()`] to get the
+/// environment variables of the current process. For more information
+/// about the safety of this function, see the documentation [`env::vars_os()`].
+///
+/// # Panics
+/// If the environment lock is poisoned, this function will panic.
+///
+/// # Examples
+///
+/// ```
+/// use std::env;
+///
+/// let key = "KEY";
+/// env::set_var(key, "VALUE");
+/// assert_eq!(env::var(key), Ok("VALUE".to_string()));
+///
+/// env::inherit();
+/// assert_eq!(env::var(key), Ok("VALUE".to_string()));
+/// ```
+///
+/// [`env::vars_os()`]: std::env::vars_os
+pub unsafe fn inherit() {
+    for (key, value) in std::env::vars_os() {
+        set_var(key, value);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
